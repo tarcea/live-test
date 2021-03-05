@@ -6,7 +6,6 @@ import MemberNearYouData from "../../Data/MemberNearYouData";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import "./style.css";
-
 import Gunjan from "../../assets/Gunjan.png";
 import Chloe from "../../assets/Chloe.png";
 import Jonathan from "../../assets/Jonathan.png";
