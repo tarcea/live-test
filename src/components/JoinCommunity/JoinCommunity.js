@@ -11,9 +11,12 @@ import Gunjan from "../../assets/Gunjan.png";
 import Chloe from "../../assets/Chloe.png";
 import Jonathan from "../../assets/Jonathan.png";
 import Chloé from "../../assets/Asya.png";
+import useFetchDoc from "../../hooks/useFetchDoc";
 
 export const JoinCommunity = () => {
   const { width } = GetWindowDimension();
+  const { items, loading } = useFetchDoc('community');
+
   const Join = () => (
     <section className="join">
       <div className="join_video_container">
@@ -33,10 +36,27 @@ export const JoinCommunity = () => {
           <track kind="captions" />
         </video>
       </div>
-
       <div className="join_info">
+      {loading ?
+      <>
         <p id="join_title">Connect with expats and locals around the world</p>
         <p id="join_header">More than 180K expats and 32K members globally</p>
+      </> : 
+      <>
+        <p 
+          id="join_title"
+          style={items[0].style}
+        >
+          {items[0].content}
+        </p>
+        <p 
+          id="join_header"
+          style={items[1].style}
+        >
+          {items[1].content}
+        </p>
+      </>
+      }
         <div className="join_member_list">
           {MemberNearYouData.map((memberData, index) => (
             <MemberNearYou memberData={memberData} key={index} />

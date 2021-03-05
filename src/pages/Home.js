@@ -33,9 +33,10 @@ export const Home = () => {
   const places = useFetchDoc('places');
   const features = useFetchDoc('features');
   const cities = useFetchArray('cities');
- 
+  const articles = useFetchArray('articles');
+
   const isLoading = () => {
-    return (texts.loading || places.loading || features.loading || cities.loading);
+    return (texts.loading || places.loading || features.loading || cities.loading || articles.loading);
   };
 
   useEffect(() => {
@@ -83,7 +84,6 @@ const staticPage = () => {
           </p>
         </section>
       </LazyLoad>
-      
       <section className="section_value">
         <HomeValue
           src={community}
@@ -153,11 +153,11 @@ const staticPage = () => {
       </section>
       <section className="aux_services" id="aux_services">
         <SectionHeader header="Helpful services" />
-        <div className="aux_list">
+        {/* <div className="aux_list">
           {AuxServicesData.map(({ name, ...otherProps }) => (
             <AuxService name={name} key={name} {...otherProps} />
           ))}
-        </div>
+        </div> */}
       </section>
     </>
   );
@@ -165,106 +165,103 @@ const staticPage = () => {
 
   return (
     <>
-    {isLoading() ? staticPage() : 
-      <>
-      <LazyLoad>
-        <section className="section_header" id="section_header">
-          <p 
-            id="header_1" 
-            style={texts.items[0].style}
-          >
-            {texts.items[0].content}
-          </p>
-          <p id="header_2">{texts.items[1].content}</p>
-          <SearchCity />
-          <p id="header_suggestion">
-            Maybe{" "}
-            <a href="https://globuzzer.mn.co/groups/195831/feed">{places.items[0].text}</a>,
-            <a href="https://globuzzer.mn.co/groups/195832/feed">{places.items[1].text}</a>
-            {" "}
-            or <a href="https://globuzzer.mn.co/groups/195834/feed">{places.items[2].text}</a>?
-          </p>
-        </section>
-      </LazyLoad>
-      
-      <section className="section_value">
-        <HomeValue
-          src={features.items[0].image}
-          imgCaption={features.items[0].title}
-          alt="value"
-          imgDescription={features.items[0].text}
-        />
-        <HomeValue
-          src={features.items[1].image}
-          imgCaption={features.items[1].title}
-          alt="value"
-          imgDescription={features.items[1].text}
-        />
-        <HomeValue
-          src={features.items[2].image}
-          imgCaption={features.items[2].title}
-          alt="value"
-          imgDescription={features.items[2].text}
-        />
-      </section>
-      <section className="section_newcity" id="section_newcity">
-        {/* <p id="newcity_p">Move to a new city? </p> */}
-        <SectionHeader header="What is your next destination? " />
-        <div className="newcity_input">
-          <FiSearch className="search_icon" />
-          <input
-            type="text"
-            placeholder="Find your city"
-            id="newcity_input_city"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </div>
-        <div className="joincity_grid">
-          {cities.items.map((cityData, index) => (
-            <JoinCity cityData={cityData} key={index} />
-          ))}
-          {!moreJoinCity && cities.items.length > 0 && (
-            <JoinCity
-              cityData={{ name: "Explore more cities" }}
-              isViewMore
-              setMoreJoinCity={setMoreJoinCity}
+      {isLoading() ? staticPage() : 
+      (
+        <>
+          <LazyLoad>
+            <section className="section_header" id="section_header">
+              <p
+                id="header_1" 
+                style={texts.items[0].style}
+              >
+                {texts.items[0].content}
+              </p>
+              <p id="header_2">{texts.items[1].content}</p>
+              <SearchCity />
+              <p id="header_suggestion">
+                Maybe{" "}
+                <a href="https://globuzzer.mn.co/groups/195831/feed">{places.items[0].text}</a>,
+                <a href="https://globuzzer.mn.co/groups/195832/feed">{places.items[1].text}</a>
+                {" "}
+                or <a href="https://globuzzer.mn.co/groups/195834/feed">{places.items[2].text}</a>?
+              </p>
+            </section>
+          </LazyLoad>
+          <section className="section_value">
+            <HomeValue
+              src={features.items[0].image}
+              imgCaption={features.items[0].title}
+              alt="value"
+              imgDescription={features.items[0].text}
             />
-          )}
-          {moreJoinCity && cities.items.length > 0 && <RequestNewCity />}
-        </div>
-        <div className="no_item">
-          {cities.items.length === 0 && <RequestNewCity />}
-        </div>
-      </section>
-      <JoinCommunity />
+            <HomeValue
+              src={features.items[1].image}
+              imgCaption={features.items[1].title}
+              alt="value"
+              imgDescription={features.items[1].text}
+            />
+            <HomeValue
+              src={features.items[2].image}
+              imgCaption={features.items[2].title}
+              alt="value"
+              imgDescription={features.items[2].text}
+            />
+          </section>
+          <section className="section_newcity" id="section_newcity">
+            {/* <p id="newcity_p">Move to a new city? </p> */}
+            <SectionHeader header="What is your next destination? " />
+            <div className="newcity_input">
+              <FiSearch className="search_icon" />
+              <input
+                type="text"
+                placeholder="Find your city"
+                id="newcity_input_city"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+              />
+            </div>
+            <div className="joincity_grid">
+              {cities.items.map((cityData, index) => (
+                <JoinCity cityData={cityData} key={index} />
+              ))}
+              {!moreJoinCity && cities.items.length > 0 && (
+                <JoinCity
+                  cityData={{ name: "Explore more cities" }}
+                  isViewMore
+                  setMoreJoinCity={setMoreJoinCity}
+                />
+              )}
+              {moreJoinCity && cities.items.length > 0 && <RequestNewCity />}
+            </div>
+            <div className="no_item">
+              {cities.items.length === 0 && <RequestNewCity />}
+            </div>
+          </section>
+          <JoinCommunity />
 
-      <section className="featured_articles" id="featured_articles">
-        <SectionHeader header="Featured articles" />
-        {FeaturedArticlesData.map(({ title, ...otherProps }) => (
-          <FeaturedArticle key={title} title={title} {...otherProps} />
-        ))}
-        <div className="featured_articles_more">
-          <a
-            href="https://globuzzer.mn.co/feed?filters=articles"
-            className="featured_articles_more_anchor"
-          >
-            SEE ALL ARTICLES
-          </a>
-          <MdKeyboardArrowRight className="featured_articles_more_icon" />
-        </div>
-      </section>
-      <section className="aux_services" id="aux_services">
-        <SectionHeader header="Helpful services" />
-        <div className="aux_list">
-          {AuxServicesData.map(({ name, ...otherProps }) => (
-            <AuxService name={name} key={name} {...otherProps} />
-          ))}
-        </div>
-      </section>
-      </>
-    }
-        
+          <section className="featured_articles" id="featured_articles">
+            <SectionHeader header="Featured articles" />
+            {articles.items.map(({ title, ...otherProps }) => (
+              <FeaturedArticle key={title} title={title} {...otherProps} />
+            ))}
+            <div className="featured_articles_more">
+              <a
+                href="https://globuzzer.mn.co/feed?filters=articles"
+                className="featured_articles_more_anchor"
+              >
+                SEE ALL ARTICLES
+              </a>
+              <MdKeyboardArrowRight className="featured_articles_more_icon" />
+            </div>
+          </section>
+          <section className="aux_services" id="aux_services">
+            <SectionHeader header="Helpful services" />
+            <div className="aux_list">
+              <AuxService />
+            </div>
+          </section>
+        </>
+      )}
       <OwnSection />
       <Footer />
     </>

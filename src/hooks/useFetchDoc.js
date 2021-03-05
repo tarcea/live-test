@@ -20,7 +20,7 @@ const useFetchDoc = (document) => {
     };
     getData();
   }, [document, setItems]);
-  return { items: items, loading: loading };
+  return { items, loading };
 };
 
 export default useFetchDoc;
