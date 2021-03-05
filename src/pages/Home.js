@@ -254,9 +254,7 @@ const staticPage = () => {
           </section>
           <section className="aux_services" id="aux_services">
             <SectionHeader header="Helpful services" />
-            <div className="aux_list">
-              <AuxService />
-            </div>
+            <AuxService />
           </section>
         </>
       )}

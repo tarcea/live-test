@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
+import "../../css/Home.css";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useFetchArray from "../../hooks/useFetchArray";
 
@@ -47,47 +48,49 @@ const AuxService = () => {
       ]
     };
 
-  const renderedServices = () => {
-    return (
-      <>
-        {loading ? <div>Loading...</div> :
-          (
-          items.map(({link, logo, name, des, id}) => (
-            <div key={id}>
-              <button type="button" className="auxservice-container">
-                <a href={link}>
-                  <div className="aux-logo-container">
-                    <img src={logo} alt="logo" className="aux-logo" />
-                  </div>
-                  <div className="auxservice-bottom-container">
-                    <p id="find-jobs">{name}</p>
-                    <p className="aux-des">{des}</p>
-                  </div>
-                </a>
-              </button>
-            </div>
-          ))
-        )}
-      </>
-    );
-  };
+  const renderedServices = () => (
+    <>
+      {
+      items.map(({link, logo, name, des, id}) => (
+        <div key={id}>
+          <button type="button" className="auxservice-container">
+            <a href={link} target="_new">
+              <div className="aux-logo-container">
+                <img src={logo} alt="logo" className="aux-logo" />
+              </div>
+              <div className="auxservice-bottom-container">
+                <p id="find-jobs">{name}</p>
+                <p className="aux-des">{des}</p>
+              </div>
+            </a>
+          </button>
+        </div>
+      ))
+      }
+    </>
+  );
 
   return (
-    <div
-      className="aux_list"
-      style={
-        {display: items.length > 4 ? '' : 'flex'}
-        }
-    >
-      {items.length <= 4 ? renderedServices() :
-      (
-        <Slider
-          {...settings}
+    <>
+      {loading ? <div>Loading...</div>
+      : (
+        <div
+          className="aux_list"
+          style={
+            {display: items.length > 4 ? '' : 'flex'}
+            }
         >
-          {renderedServices()}
-        </Slider>
-      )}
-    </div>
+          {items.length <= 4 ? renderedServices()
+          : (
+            <Slider
+              {...settings}
+            >
+              {renderedServices()}
+            </Slider>
+          )}
+        </div>
+        )}
+    </>
   );
 };
 
