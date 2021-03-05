@@ -19,7 +19,6 @@ import { Footer } from "../components/Footer/Footer";
 import { SearchCity } from "../components/SearchCity/SearchCity";
 import { JoinCommunity } from "../components/JoinCommunity/JoinCommunity";
 import { RequestNewCity } from "../components/RequestNewCity/RequestNewCity";
-import useFetch from "../hooks/useFetch";
 import { firestore } from "../utils/firebase.utils";
 import useFetchDoc from "../hooks/useFetchDoc";
 import useFetchArray from "../hooks/useFetchArray";
