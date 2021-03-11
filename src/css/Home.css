@@ -131,6 +131,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
+    text-align: -webkit-center;
 }
 
 .joincity_request_city_icon {
@@ -484,28 +485,29 @@
 
 .slick-slide > div {
     margin: 0 16px;
-  }
-  .slick-list {
+    /* width: 98%; */
+}
+.slick-list {
     margin: 0 -16px;
-  }
+}
   
-  .slick-next, .slick-prev {
-    height: 62px !important;
-    width: 62px !important;
-    border-radius: 50%;
-  }
+.slick-next, .slick-prev {
+height: 62px !important;
+width: 62px !important;
+border-radius: 50%;
+}
   
-  .slick-next {
-    background: url("../assets/AuxServices/right.png") center center no-repeat!important;
-    margin: 0 -55px;
-  }
+.slick-next {
+background: url("../assets/AuxServices/right.png") center center no-repeat!important;
+margin: 0 -55px;
+}
   
-  .slick-prev {
-    background: url("../assets/AuxServices/left.png") center center no-repeat!important;
-    margin: 0 -55px;
-  }
+.slick-prev {
+background: url("../assets/AuxServices/left.png") center center no-repeat!important;
+margin: 0 -55px;
+}
   
-  .slick-next::before, .slick-prev::before {
-      display: none;
-    }
-  /*slick end*/
+.slick-next::before, .slick-prev::before {
+    display: none;
+}
+/*slick end*/

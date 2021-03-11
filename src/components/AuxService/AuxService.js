@@ -49,39 +49,25 @@ const AuxService = () => {
     };
 
   const renderedServices = () => (
-    <>
-      {
       items.map(({link, logo, name, des, id}) => (
-        <button key={id} type="button" className="auxservice-container">
-          <a href={link} target="_new">
-            <div className="aux-logo-container">
-              <img src={logo} alt="logo" className="aux-logo" />
-            </div>
-            <div className="auxservice-bottom-container">
-              <p id="find-jobs">{name}</p>
-              <p className="aux-des">{des}</p>
-            </div>
-          </a>
-        </button>
+        <div>
+          <button key={id} type="button" className="auxservice-container">
+            <a href={link} target="_new">
+              <div className="aux-logo-container">
+                <img src={logo} alt="logo" className="aux-logo" />
+              </div>
+              <div className="auxservice-bottom-container">
+                <p id="find-jobs">{name}</p>
+                <p className="aux-des">{des}</p>
+              </div>
+            </a>
+          </button>
+        </div>
       ))
-      }
-    </>
   );
 
   return (
-    // <div className="aux_list">
-    //   <Slider {...settings}>
-    //     <div>
-    //     <div>1</div>
-    //   <div>2</div>
-    //   <div>3</div>
-    //   <div>4</div>
-    //   <div>5</div>
-    //     </div>
-    // </Slider>
-    // {renderedServices()}
-    // </div>
-    <>
+    <div>
       {loading ? <span>Loading...</span>
       : (
         <div
@@ -100,7 +86,7 @@ const AuxService = () => {
           )}
         </div>
         )}
-    </>
+    </div>
   );
 };
 
