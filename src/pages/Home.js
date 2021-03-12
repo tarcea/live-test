@@ -27,6 +27,7 @@ export const Home = () => {
   const [moreJoinCity, setMoreJoinCity] = useState(false);
   const [joinCity, setJoinCity] = useState(JoinCityData);
   // const { items, loading } = useFetch('landing_live');
+  const banners = useFetchArray('banners');
   const texts = useFetchDoc('texts');
   const places = useFetchDoc('places');
   const features = useFetchDoc('features');
@@ -34,7 +35,7 @@ export const Home = () => {
   const articles = useFetchArray('articles');
 
   const isLoading = () => {
-    return (texts.loading || places.loading || features.loading || cities.loading || articles.loading);
+    return (texts.loading || places.loading || features.loading || cities.loading || articles.loading || banners.loading);
   };
 
   useEffect(() => {
@@ -167,7 +168,11 @@ const staticPage = () => {
       (
         <>
           <LazyLoad>
-            <section className="section_header" id="section_header">
+            <section
+              className="section_header"
+              id="section_header"
+              style={{backgroundImage: `url(${banners.items[0].img})`}}
+            >
               <p
                 id="header_1" 
                 style={texts.items[0].style}
