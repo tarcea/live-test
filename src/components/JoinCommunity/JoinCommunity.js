@@ -57,10 +57,7 @@ export const JoinCommunity = () => {
       <div className="join_info">
         {isLoading()
           ? (
-            <>
-              <p id="join_title">Connect with expats and locals around the world</p>
-              <p id="join_header">More than 180K expats and 32K members globally</p>
-            </>
+            <div>Loading...</div>
             )
           : (
             <>

@@ -5,10 +5,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useFetchArray from "../../hooks/useFetchArray";
+import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
 const AuxService = () => {
   const { items, loading } = useFetchArray('services');
-
+  const { width } = GetWindowDimension();
      // carousel settings
      const settings = {
       dots: false,
@@ -67,13 +68,13 @@ const AuxService = () => {
   );
 
   return (
-    <div>
+    <div style={{overflow: "scroll"}}>
       {loading ? <span>Loading...</span>
       : (
         <div
           className="aux_list"
           style={
-            {display: items.length > 4 ? '' : 'flex'}
+            {display: items.length > 4 ? "" : "flex", flexDirection: width < 1100 ? "column" : ""}
             }
         >
           {items.length <= 4 ? renderedServices()
