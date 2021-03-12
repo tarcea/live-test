@@ -50,8 +50,8 @@ const AuxService = () => {
 
   const renderedServices = () => (
       items.map(({link, logo, name, des, id}) => (
-        <div>
-          <button key={id} type="button" className="auxservice-container">
+        <div key={id}>
+          <button type="button" className="auxservice-container">
             <a href={link} target="_new">
               <div className="aux-logo-container">
                 <img src={logo} alt="logo" className="aux-logo" />
