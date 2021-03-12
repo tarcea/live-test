@@ -74,7 +74,7 @@ const AuxService = () => {
         <div
           className="aux_list"
           style={
-            {display: items.length > 4 ? "" : "flex", flexDirection: width < 1100 ? "column" : ""}
+            {display: items.length > 4 ? "" : "flex"}
             }
         >
           {items.length <= 4 ? renderedServices()
