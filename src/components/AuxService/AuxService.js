@@ -8,7 +8,7 @@ import useFetchArray from "../../hooks/useFetchArray";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
 const AuxService = () => {
-  const { items, loading } = useFetchArray('services');
+  const { items, loading } = useFetchArray("services");
   const { width } = GetWindowDimension();
      // carousel settings
      const settings = {

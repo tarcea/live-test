@@ -121,12 +121,12 @@
 .aux_list {
     /* display: flex; */
     width: 100%;
-    overflow: scroll;
+    /* overflow: scroll; */
     padding-bottom: 40px;
 }
 
 .aux_services {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
