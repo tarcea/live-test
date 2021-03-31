@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { SearchCity } from "../../components/SearchCity/SearchCity";
-import { SectionHeader } from "../../components/SectionHeader/SectionHeader";
-// import services from "../../Data/HelsinkiServicesData";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import HelsinkiTopicData from "../../Data/HelsinkiTopicData";
 import "./style.css";
 import { firestore } from "../../utils/firebase.utils";
+import styles from "./index.module.css";
+import SHeader from "../../components/SHeader/SHeader";
+import Services from "../../components/Services/Services";
+import Topics from "../../components/Topics/Topics";
+import SliderBanner from "../../components/SliderBanner/SliderBanner";
+import Vimeo from "../../components/Vimeo/Vimeo";
+import Members from "../../components/Members/Members";
+import Articles from "../../components/Articles/Articles";
 
 const City = ({ name }) => {
-  // const sorted = services.slice(0, 5);
   const { width } = GetWindowDimension();
   const [loading, setLoading] = useState(true);
   const [collectionA, setCollection] = useState([]);
@@ -34,97 +38,89 @@ const City = ({ name }) => {
      return () => unsubscribe();
   }, []);
 
-  // useEffect(() => {
-  //   const getCurrentCity = async () => {
-  //     const doc = await firestore.collection('section_live').get();
-  //     if (!doc.exists) {
-  //       setLoading(true);
-  //     } else {
-  //       // setCurrentCity(doc.data().filter((c) => c.name === cityName)[0]);
-  //       console.log(doc.data())
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getCurrentCity();
-  // }, []);
-
   return (
     currentCity ? (
-    <>
-      <section className="helsinki_header">
-        <div className="helsinki_header_url">
-          <Link to="/">
-            <p>Landing Page</p>
-          </Link>
-          <AiFillCaretRight className="helsinki_header_url_icon" />
-          <p>{cityName}</p>
+      <div className={styles.section}>
+        <div className={styles.header}>
+          <SHeader city={currentCity} cityName={cityName}/>
         </div>
-        <p id="header_1" style={{...currentCity.title}.style}>{{...currentCity.title}.content}</p>
-        <p id="helsinki_header_2" style={{...currentCity.subtitle}.style}>{{...currentCity.subtitle}.content}</p>
-        <SearchCity />
-        <p id="header_suggestion">
-          Maybe <a href="./AboutUs.js">{{...currentCity.placeOne}.text}</a>,{" "}
-          <Link to="./helsinki">{{...currentCity.placeTwo}.text}</Link> or
-          <a href="Paris">{{...currentCity.placeThree}.text}</a>?
-        </p>
-      </section>
-      <section className="helsinki_services">
-        <SectionHeader header="Recommended services to you" />
-        <div className="helsinki_services_container">
-          {width >= 1100 ? (
-            <>
-              {(services || []).map((service, index) => (
-                <div className="single_service_container">
-                  <img
-                    alt="service"
-                    key={index}
-                    src={service.image}
-                    className="single_service_icon"
-                  />
-                  <p className="single_service_name">{service.title}</p>
-                </div>
-              ))}
-            </>
-          ) : (
-            <>
-              {(services || []).map((service, index) => (
-                <div className="single_service_container">
-                  <img
-                    alt="service"
-                    key={index}
-                    src={service.image}
-                    className="single_service_icon"
-                  />
-                  <p className="single_service_name">{service.title}</p>
-                </div>
-              ))}
-            </>
-          )}
-        </div>
-      </section>
-      <section className="helsinki_topics">
-        <SectionHeader header="Top Topics to explore" />
-        {HelsinkiTopicData.map((topic, index) => (
-          <div key={index}>
-            <img src={topic.img} alt="topic" />
+        <div className={styles.main}>
+          <div className={styles.center}>
+            <div className={styles.services}>
+              <Services city={currentCity} />
+              <Topics city={currentCity} cityName={cityName} />
+            </div>
+            <div className={styles.slider}>
+              <SliderBanner city={currentCity} />
+              <Vimeo city={currentCity} />
+            </div>
           </div>
-        ))}
-      </section>
-
-    </>
-    ) : <div>
-        <section className="helsinki_header">
-        <div className="helsinki_header_url">
-          <Link to="/">
-            <p>Landing Page</p>
-          </Link>
-          <AiFillCaretRight className="helsinki_header_url_icon" />
-          <p>{cityName}</p>
+          <div className={styles.members}>
+            <Members city={currentCity} />
+          </div>
+          <div className={styles.articles}>
+            <Articles city={currentCity} />
+          </div>
+          <div className={styles.relocate}>
+            {/* <TopVideos cityId={cityId} /> */}
+          </div>
         </div>
-        <p id="header_1" >page not found</p>
-        <p id="helsinki_header_2">try another city</p>
-      </section>
-    </div>
+        <div className={styles.footer}>
+          {/* <OwnSection />
+          <Footer /> */}
+        </div>
+      </div>
+    // <>
+    //   <section className="helsinki_header">
+    //     <div className="helsinki_header_url">
+    //       <Link to="/">
+    //         <p>Landing Page</p>
+    //       </Link>
+    //       <AiFillCaretRight className="helsinki_header_url_icon" />
+    //       <p>{cityName}</p>
+    //     </div>
+    //     <p id="header_1" style={{...currentCity.title}.style}>{{...currentCity.title}.content}</p>
+    //     <p id="helsinki_header_2" style={{...currentCity.subtitle}.style}>{{...currentCity.subtitle}.content}</p>
+    //     <SearchCity />
+    //     <p id="header_suggestion">
+    //       Maybe <a href="./AboutUs.js">{{...currentCity.placeOne}.text}</a>,{" "}
+    //       <Link to="./helsinki">{{...currentCity.placeTwo}.text}</Link> or
+    //       <a href="Paris">{{...currentCity.placeThree}.text}</a>?
+    //     </p>
+    //   </section>
+    //   <section className="helsinki_services">
+    //     <SectionHeader header="Recommended services to you" />
+    //     <div className="helsinki_services_container">
+    //       {width >= 1100 ? (
+    //         <>
+    //           {(services || []).map((service, index) => (
+    //             <div className="single_service_container">
+    //               <img
+    //                 alt="service"
+    //                 key={index}
+    //                 src={service.image}
+    //                 className="single_service_icon"
+    //               />
+    //               <p className="single_service_name">{service.title}</p>
+    //             </div>
+    //           ))}
+    //         </>
+    )
+    : (
+      <div>
+        <section className="helsinki_header">
+          <div className="helsinki_header_url">
+            <Link to="/">
+              <p>Landing Page</p>
+            </Link>
+            <AiFillCaretRight className="helsinki_header_url_icon" />
+            <p>{cityName}</p>
+          </div>
+          <p id="header_1" >page not found</p>
+          <p id="helsinki_header_2">try another city</p>
+        </section>
+      </div>
+    )
   );
 };
 
