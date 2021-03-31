@@ -47,7 +47,7 @@ const City = ({ name }) => {
   //   };
   //   getCurrentCity();
   // }, []);
-console.log((currentCity["services"] || []).length)
+
   return (
     currentCity ? (
     <>
