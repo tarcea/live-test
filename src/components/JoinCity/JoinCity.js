@@ -42,7 +42,7 @@ export const JoinCity = (props) => {
                         View More
                     </button>
                 ) : (
-                    <button type="button" id="joincity_join" onClick={() => navigateTo(cityData.url)}>
+                    <button type="button" id="joincity_join" onClick={() => navigateTo(cityData.name)}>
                         Explore
                     </button>
                 )}
