@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import {Link} from "react-router-dom";
 import {SearchCity} from "../SearchCity/SearchCity";

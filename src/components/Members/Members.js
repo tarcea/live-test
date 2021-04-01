@@ -1,10 +1,10 @@
-import React, { useContext, useState, Fragment, useEffect, useRef } from 'react';
+import React from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styles from "./Members.module.css";
 import BlogHeader from "../SectionHeader/BlogHeader";
 import { MemberCard } from "./MemberCard";
-import { GetWindowDimension } from '../../utils/GetWindowDimension';
+import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
 const Members = ({ city }) => {
   const { topMembers } = city;

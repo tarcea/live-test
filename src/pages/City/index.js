@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import "./style.css";
 import { firestore } from "../../utils/firebase.utils";
 import styles from "./index.module.css";
@@ -12,9 +11,10 @@ import SliderBanner from "../../components/SliderBanner/SliderBanner";
 import Vimeo from "../../components/Vimeo/Vimeo";
 import Members from "../../components/Members/Members";
 import Articles from "../../components/Articles/Articles";
+import { OwnSection } from "../../components/OwnSection/OwnSection";
+import { Footer } from "../../components/Footer/Footer";
 
 const City = ({ name }) => {
-  const { width } = GetWindowDimension();
   const [currentCity, setCurrentCity] = useState({});
   const cityName = name.replace("/", "");
 
@@ -62,8 +62,8 @@ const City = ({ name }) => {
           </div>
         </div>
         <div className={styles.footer}>
-          {/* <OwnSection />
-          <Footer /> */}
+          <OwnSection />
+          <Footer />
         </div>
       </div>
     )
@@ -80,6 +80,10 @@ const City = ({ name }) => {
           <p id="header_1" >page not found</p>
           <p id="helsinki_header_2">try another city</p>
         </section>
+        <div className={styles.footer}>
+          <OwnSection />
+          <Footer />
+        </div>
       </div>
     )
   );

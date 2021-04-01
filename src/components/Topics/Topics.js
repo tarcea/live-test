@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import styles from "./Topics.module.css";
 import BlogHeader from "../SectionHeader/BlogHeader";
 import TopicCard from "./TopicCard";
-// import { TopicsData } from "../../assets/Section/Topics/TopicsData";
 import arrow from "../../assets/arrow-icon.svg";
-import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
 const Topics = ({ city, cityName }) => {
-  const { width } = GetWindowDimension();
   const { topics } = city;
   const arraySize = () => {
     let size;
@@ -33,44 +30,39 @@ const Topics = ({ city, cityName }) => {
     return label;
   };
 
-  const TopicsMobile = () => {
-    return (
-      <div className={styles.wrapper}>
-        Go on desktop to edit
+  return (
+    <div className={styles.wrapper}>
+      <BlogHeader label="Top Topics to explore" />
+      <div className={styles.container}>
+        {(topics || []).slice(0, cardsToShow).map((topic) => (
+          <div key={topic.id}>
+            <TopicCard
+              topic={topic}
+              cityName={cityName}
+            />
+          </div>
+        ))}
       </div>
-    );
-  };
-
-  const TopicsDesktop = () => {
-    return (
-      <div className={styles.wrapper}>
-        <BlogHeader label="Top Topics to explore" />
-        <div className={styles.container}>
-          {(topics || []).slice(0, cardsToShow).map((topic) => (
-            <div key={topic.id}>
-              <TopicCard
-                topic={topic}
-                cityName={cityName}
-              />
-            </div>
-          ))}
-        </div>
-        <button type="button" className={styles.moreBtn}>
-          View More
-        </button>
-        <div
-          className={styles.moreDesk}
+      <button 
+        type="button" 
+        className={styles.moreBtn}
+        onClick={moreCards}
+      >
+        {moreOrLess().includes("less") ? "View Less" : "View More" }
+      </button>
+      <div
+        className={styles.moreDesk}
+      >
+        <p 
+          className={styles.moreLink} 
+          onClick={moreCards}
         >
-          <p className={styles.moreLink} onClick={moreCards}>
-            {moreOrLess().includes("less") ? "See Less topics" : "See More topics" }
-            <img src={arrow} alt="arrow-icon" className={styles.arrow} />
-          </p>
-        </div>
+          {moreOrLess().includes("less") ? "See Less topics" : "See More topics" }
+          <img src={arrow} alt="arrow-icon" className={styles.arrow} />
+        </p>
       </div>
-    );
-  };
-
-  return <>{width > 1100 ? TopicsDesktop() : TopicsMobile()}</>;
+    </div>
+  );
 };
 
 export default Topics;

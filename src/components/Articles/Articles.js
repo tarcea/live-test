@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Slider from "react-slick";
 import styles from "./Articles.module.css";
 import "./Articles.css";
@@ -12,13 +12,45 @@ const Articles = ({ city }) => {
   const { width } = GetWindowDimension();
   const { articles } = city;
 
+  const mappedArticles = () => (
+    (articles || []).map((data) => (
+      <div
+        className={styles.eachSlide}
+        key={data.id}
+      >
+        <div className={styles.card}>
+          <div
+            className={styles.top}
+            style={{ backgroundImage: `url(${data.coverImg})` }}
+          >
+            <p className={styles.title}>{data.title}</p>
+          </div>
+          <div className={styles.bottom}>
+            <div className={styles.author}>
+              <img src={data.authImg} alt="author" className={styles.img} />
+              <p className={styles.name}>{data.authName}</p>
+            </div>
+            <div className={styles.likes}>
+              <img
+                src={heart}
+                alt="heart-button"
+                className={styles.heart}
+              />
+              <p className={styles.number}>{data.likes}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  );
+
   const ArticlesMobile = () => {
     return (
       <div className={styles.mobile}>
         <div className={styles.items}>
-          Go on desktop for editing
+          {mappedArticles()}
         </div>
-        <button 
+        <button
           className={styles.moreBtn}
           type="button"
         >
@@ -38,40 +70,12 @@ const Articles = ({ city }) => {
       variableWidth: true,
     };
     return (
-      <div className="articles" style={{position: "relative"}}>
+      <div className="articles">
         <Slider
           {...settings}
           className={styles.articles}
         >
-          {(articles || []).map((data) => (
-            <div
-              className={styles.eachSlide}
-              key={data.id}
-            >
-              <div className={styles.card}>
-                <div
-                  className={styles.top}
-                  style={{ backgroundImage: `url(${data.coverImg})` }}
-                >
-                  <p className={styles.title}>{data.title}</p>
-                </div>
-                <div className={styles.bottom}>
-                  <div className={styles.author}>
-                    <img src={data.authImg} alt="author" className={styles.img} />
-                    <p className={styles.name}>{data.authName}</p>
-                  </div>
-                  <div className={styles.likes}>
-                    <img
-                      src={heart}
-                      alt="heart-button"
-                      className={styles.heart}
-                    />
-                    <p className={styles.number}>{data.likes}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          {mappedArticles()}
         </Slider>
       </div>
     );
