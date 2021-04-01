@@ -1,10 +1,12 @@
 import React from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import {Link} from "react-router-dom";
+import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import {SearchCity} from "../SearchCity/SearchCity";
 
 const SHeader = ({ city, cityName }) => {
 const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree } = city;
+const { width } = GetWindowDimension();
   return (
     <>
       <section
@@ -22,12 +24,22 @@ const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree } = city;
           <p>{cityName}</p>
         </div>
         <div className="headers">
-          <p style={{...title}.style}>{{...title}.content}</p>
-          <p style={{...subtitle}.style}>{{...subtitle}.content}</p>
+          <p
+            id="header_1"
+            style={{...{...title}.style, fontSize: width > 1100 ? {...title}.style.fontSize : ""}}
+          >
+            {{...title}.content}
+          </p>
+          <p
+            id="header_2"
+            style={{...{...subtitle}.style, fontSize: width > 1100 ? {...subtitle}.style.fontSize : ""}}
+          >
+            {{...subtitle}.content}
+          </p>
         </div>
         <SearchCity />
         <div>
-          <div id="header_suggestion" className="places">
+          <div id="header_suggestion">
             Maybe{" "}
             <a
               style={{color: {...placeOne}.color}}

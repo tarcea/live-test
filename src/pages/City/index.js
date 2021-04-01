@@ -13,6 +13,7 @@ import Members from "../../components/Members/Members";
 import Articles from "../../components/Articles/Articles";
 import { OwnSection } from "../../components/OwnSection/OwnSection";
 import { Footer } from "../../components/Footer/Footer";
+import TopVideos from "../../components/TopVideos/TopVideos";
 
 const City = ({ name }) => {
   const [currentCity, setCurrentCity] = useState({});
@@ -58,7 +59,7 @@ const City = ({ name }) => {
             <Articles city={currentCity} />
           </div>
           <div className={styles.relocate}>
-            {/* <TopVideos cityId={cityId} /> */}
+            <TopVideos city={currentCity} />
           </div>
         </div>
         <div className={styles.footer}>
