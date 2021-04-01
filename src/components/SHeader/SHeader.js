@@ -18,10 +18,10 @@ const { width } = GetWindowDimension();
           className="city_header_url"
         >
           <Link to="/">
-            <p>Landing Page</p>
+            <p style={{color: "white"}}>Landing Page</p>
           </Link>
           <AiFillCaretRight className="city_header_url_icon" />
-          <p>{cityName}</p>
+          <p style={{textTransform: "capitalize"}}>{cityName}</p>
         </div>
         <div className="headers">
           <p

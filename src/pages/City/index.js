@@ -30,7 +30,7 @@ const City = ({ name }) => {
           ...doc.data()
         }));
         // setCollection(newCity);
-        setCurrentCity(newCity.filter((c) => c.name === cityName)[0]);
+        setCurrentCity(newCity.filter((c) => c.name.toLowerCase() === cityName.toLowerCase())[0]);
       });
      return () => unsubscribe();
   }, []);

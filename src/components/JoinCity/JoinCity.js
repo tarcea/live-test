@@ -11,6 +11,7 @@ const Loading = () => (
 export const JoinCity = (props) => {
   const {cityData, isViewMore, setMoreJoinCity} = props;
   const {name, img, members} = cityData;
+
   const navigateTo = (url) => {
       window.location.href = `${url}`;
   };
