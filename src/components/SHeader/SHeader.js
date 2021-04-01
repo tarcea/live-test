@@ -26,13 +26,13 @@ const { width } = GetWindowDimension();
         <div className="headers">
           <p
             id="header_1"
-            style={{...{...title}.style, fontSize: width > 1100 ? {...title}.style.fontSize : ""}}
+            style={{...{...title}.style, fontSize: width > 1100 ? ({...title}.style || {}).fontSize : ""}}
           >
             {{...title}.content}
           </p>
           <p
             id="header_2"
-            style={{...{...subtitle}.style, fontSize: width > 1100 ? {...subtitle}.style.fontSize : ""}}
+            style={{...{...subtitle}.style, fontSize: width > 1100 ? ({...subtitle}.style || {}).fontSize : ""}}
           >
             {{...subtitle}.content}
           </p>
