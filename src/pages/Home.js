@@ -35,7 +35,7 @@ export const Home = () => {
 
 useEffect(() => {
   const unsubscribe = firestore
-    .collection("section_items")
+    .collection("section_live")
     .orderBy("name")
     .onSnapshot((snapshot) => {
       const newCity = snapshot.docs.map((doc) => (
