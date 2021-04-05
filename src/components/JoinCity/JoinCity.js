@@ -46,7 +46,7 @@ export const JoinCity = (props) => {
           <button
             type="button"
             id="joincity_join"
-            onClick={() => navigateTo(cityData.name)}
+            onClick={() => navigateTo(cityData.name.toLowerCase())}
           >
             Explore
           </button>
