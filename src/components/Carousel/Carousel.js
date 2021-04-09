@@ -18,12 +18,12 @@ const KeenSlider = ({ data }) => {
       },
     }
     );
-    const gogu = () => {
+    const noSlides = () => {
       return width > 1100 ? 3 : 1;
     };
 useEffect(() => {
-  setSlides(gogu());
-}, []);
+  setSlides(noSlides());
+}, [width]);
 
   return (
     <>

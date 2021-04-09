@@ -30,7 +30,6 @@ const CarouselCard = ({ item, currentSlide, slideIndex }) => {
     if (currentSlide === slideIndex) {
       return {
         transform: 'scale(1.09)',
-
       }
     }
   };
@@ -39,7 +38,7 @@ const CarouselCard = ({ item, currentSlide, slideIndex }) => {
     <>
     <div className="slider center">
      <div className="slide" style={centerStyle()}>
-        <p>{item.name}</p>
+        <p>{item.text}</p>
         <div 
         className="cl"
         style={{backgroundImage: `linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url(${item.coverImg})`}}

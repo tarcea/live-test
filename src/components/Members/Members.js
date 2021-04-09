@@ -17,7 +17,7 @@ const Members = ({ city }) => {
         {(topMembers || []).slice(0, 2).map((data) => (
           <>
             <div />
-            <div className="member_ava_container">
+            <div className="member_ava_container" key={data.id}>
               <img src={data.image} alt="ava" className="member_ava" />
               <p className="member_ava_name">{data.name}</p>
               <p className="member_ava_city">{data.flags}</p>
@@ -38,7 +38,7 @@ const Members = ({ city }) => {
         </div>
         {(topMembers || []).slice(2, 5).map((data) => (
           <>
-            <div className="member_ava_container">
+            <div className="member_ava_container" key={data.id}>
               <img src={data.image} alt="ava" className="member_ava" />
               <p className="member_ava_name">{data.name}</p>
               <p className="member_ava_city">{data.flags}</p>
