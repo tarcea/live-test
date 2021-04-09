@@ -59,6 +59,7 @@ const CarouselCard = ({ item, currentSlide, slideIndex }) => {
             </div>
           </div>
         </div>
+        <p>" "</p>
       </div>
     </div>
     </>

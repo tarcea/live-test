@@ -16,14 +16,15 @@ const KeenSlider = ({ data }) => {
       slideChanged(s) {
         setCurrentSlide(s.details().relativeSlide);
       },
-    }
-    );
-    const noSlides = () => {
-      return width > 1100 ? 3 : 1;
-    };
-useEffect(() => {
-  setSlides(noSlides());
-}, [width]);
+    });
+
+  const noSlides = () => {
+    return width > 1100 ? 3 : 1;
+  };
+
+  useEffect(() => {
+    setSlides(noSlides());
+  }, [width]);
 
   return (
     <>
