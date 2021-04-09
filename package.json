@@ -8,10 +8,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "firebase": "^8.2.9",
-    "firebase-tools": "^8.9.2",
+    "firebase-tools": "^9.9.0",
     "history": "^5.0.0",
+    "keen-slider": "^5.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-autocomplete": "^1.2.4",
@@ -22,7 +23,7 @@
     "react-responsive-carousel": "^3.2.7",
     "react-router-dom": "^5.1.2",
     "react-router-hash-link": "^1.2.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "react-slick": "^0.28.0",
     "react-slideshow-image": "^1.5.3",
     "react-spring": "^8.0.27",
@@ -49,12 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0"
-  }
+  "devDependencies": {}
 }
