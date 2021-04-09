@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import {Link} from "react-router-dom";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
-import {SearchCity} from "../SearchCity/SearchCity";
+import SearchBar from "../../pages/Section/Header/SearchBar/SearchBar";
 
 const SHeader = ({ city, cityName }) => {
 const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree } = city;
@@ -37,7 +37,7 @@ const { width } = GetWindowDimension();
             {{...subtitle}.content}
           </p>
         </div>
-        <SearchCity />
+        <SearchBar sectionName={cityName}/>
         <div>
           <div id="header_suggestion">
             Maybe{" "}
