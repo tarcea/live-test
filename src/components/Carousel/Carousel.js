@@ -6,7 +6,7 @@ import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
 const KeenSlider = ({ data }) => {
   const { width } = GetWindowDimension();
-  const [slides, setSlides] = useState(1);
+  const [slides, setSlides] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider(
     { slidesPerView: slides,
@@ -24,8 +24,8 @@ const KeenSlider = ({ data }) => {
 
   useEffect(() => {
     setSlides(noSlides());
-  }, [width]);
-
+  }, [width, sliderRef]);
+ 
   return (
     <>
       { data && sliderRef && slider ? (

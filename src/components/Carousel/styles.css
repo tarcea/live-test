@@ -70,7 +70,7 @@ h1 {
   color: #FFFFFF;
   position: absolute;
   top: 0%;
-  left: 16px;
+  left: 135px;
   cursor: pointer;
 }
 .video-player {
@@ -90,3 +90,10 @@ h1 {
   /* overflow: auto; */
 }
 /* end video player */
+
+@media (min-width: 1100px) {
+  .gr-close {
+    top: -10%;
+    left: 313px;
+  }
+}
