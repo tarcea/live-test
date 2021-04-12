@@ -14,10 +14,13 @@ import Articles from "../../components/Articles/Articles";
 import { OwnSection } from "../../components/OwnSection/OwnSection";
 import { Footer } from "../../components/Footer/Footer";
 import TopVideos from "../../components/TopVideos/TopVideos";
+import { HomeValue } from "../../components/HomeValue/HomeValue";
+import useFetchDoc from "../../hooks/useFetchDoc";
 
 const City = ({ name }) => {
   const [currentCity, setCurrentCity] = useState({});
   const cityName = name.replace("/", "");
+  const features = useFetchDoc("features");
 
   useEffect(() => {
     const unsubscribe = firestore
@@ -36,7 +39,7 @@ const City = ({ name }) => {
   }, []);
 
   return (
-    currentCity ? (
+    currentCity && !features.loading ? (
       <div className={styles.section}>
         <div className={styles.header}>
           <SHeader city={currentCity} cityName={cityName}/>
@@ -44,7 +47,29 @@ const City = ({ name }) => {
         <div className={styles.main}>
           <div className={styles.center}>
             <div className={styles.services}>
-              <Services city={currentCity} />
+              {/* <Services city={currentCity} /> */}
+        {/* just temporar... */}
+              <section className="section_value">
+                <HomeValue
+                  src={features.items[0].image}
+                  imgCaption={features.items[0].title}
+                  alt="value"
+                  imgDescription={features.items[0].text}
+                />
+                <HomeValue
+                  src={features.items[1].image}
+                  imgCaption={features.items[1].title}
+                  alt="value"
+                  imgDescription={features.items[1].text}
+                />
+                <HomeValue
+                  src={features.items[2].image}
+                  imgCaption={features.items[2].title}
+                  alt="value"
+                  imgDescription={features.items[2].text}
+                />
+              </section>
+        {/* ....... */}
               <Topics city={currentCity} cityName={cityName} />
             </div>
             <div className={styles.slider}>
