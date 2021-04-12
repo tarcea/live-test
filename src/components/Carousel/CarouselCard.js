@@ -27,7 +27,7 @@ const CarouselCard = ({ item, currentSlide, slideIndex }) => {
   };
 
   const centerStyle = () => {
-    if (currentSlide === slideIndex && window.innerWidth < 1100) {
+    if (currentSlide === slideIndex && window.innerWidth > 1100) {
       return {
         transform: 'scale(1.09)',
       }
