@@ -1,7 +1,8 @@
 import React from "react";
 import "./css/App.css";
-import { Switch, Route, useLocation } from "react-router-dom";
-import { Navigation } from "./components/Navigation/Navigation";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+// import { Navigation } from "./components/Navigation/Navigation";
+import NavBar from "./pages/Section/Header/NavBar/NavBar";
 import { Destination } from "./pages/Destination";
 import { Home } from "./pages/Home";
 import { Services } from "./pages/Services";
@@ -16,12 +17,15 @@ import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
   const location = useLocation();
+  const history = useHistory();
   const { pathname } = location;
+console.log(history.location.pathname, pathname)
 
   return (
     <>
       {pathname !== "/signup" && pathname !== "/own-city-section" && (
-        <Navigation />
+        // <Navigation />
+        <NavBar pathname={pathname} />
       )}
       <ScrollToTop />
       <Switch>

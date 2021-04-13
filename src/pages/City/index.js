@@ -16,6 +16,7 @@ import { Footer } from "../../components/Footer/Footer";
 import TopVideos from "../../components/TopVideos/TopVideos";
 import { HomeValue } from "../../components/HomeValue/HomeValue";
 import useFetchDoc from "../../hooks/useFetchDoc";
+import NavBar from "../Section/Header/NavBar/NavBar";
 
 const City = ({ name }) => {
   const [currentCity, setCurrentCity] = useState({});
@@ -41,6 +42,7 @@ const City = ({ name }) => {
   return (
     currentCity && !features.loading ? (
       <div className={styles.section}>
+        {/* <NavBar /> */}
         <div className={styles.header}>
           <SHeader city={currentCity} cityName={cityName}/>
         </div>
