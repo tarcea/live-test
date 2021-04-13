@@ -15,7 +15,7 @@ const NavBar = ({ pathname }) => {
   const { width } = GetWindowDimension();
   const [scroll, setScroll] = useState(false);
   const [weather, setWeather] = useState("");
-  const [visited] = useState(JSON.parse(localStorage.getItem('visited')) || []);
+  const [visited, setVisited] = useState(JSON.parse(localStorage.getItem('visited')) || []);
  
   const handleScroll = () => {
     if (window.pageYOffset > 60) return setScroll(true);
@@ -38,7 +38,10 @@ const NavBar = ({ pathname }) => {
   // }
   const recentVisited = (array, item, length) => {
       // let unique = [...new Set(array)];
-      const transform = array.unshift(item) > length ? array.pop() : null;
+      let transform = []
+      if (item !== '/') {
+          transform = array.unshift(item) > length ? array.pop() : null;
+      }
       let unique = [...new Set(transform)];
       return unique;
     };
@@ -46,7 +49,7 @@ const NavBar = ({ pathname }) => {
 
   useEffect(() => {
     recentVisited(visited, pathname, 4);
-    localStorage.setItem("visited",JSON.stringify(visited))
+    localStorage.setItem("visited",JSON.stringify([...new Set(visited)]))
   },[]);
 console.log(visited)
   const currentTemp = () => {
