@@ -148,7 +148,7 @@ const NavBar = ({ pathname }) => {
             <ul>
               <p>All destinations:</p>
             </ul>
-
+              {console.log(oldSections.key)}
             <ul>
               <li>Helsinki</li>
               <li>Rome</li>
@@ -359,8 +359,12 @@ const NavBar = ({ pathname }) => {
           <div className="nav_bottom_container">
             <a
               type="button"
-              href="https://globuzzer.mn.co/sign_in"
               className="nav_mob_link"
+              href={
+                pathname === '/' 
+                ? "https://globuzzer.mn.co/sign_in" 
+                : `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`
+              }
             >
               Login
             </a>
