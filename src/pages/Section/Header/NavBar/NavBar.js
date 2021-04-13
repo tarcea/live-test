@@ -107,7 +107,11 @@ console.log(visited)
               {[...new Set(visited)].map((city) => {
                 const recent = city.replace('/', '');
                 if (recent !== '') {
-                  return <li>{recent}</li>
+                  return (
+                    <Link to={city}>
+                      <li>{recent}</li>
+                    </Link>
+                  )
                 }
               })}
             </ul>
@@ -234,12 +238,9 @@ console.log(visited)
           </nav>
         </li>
 
-        <a
-          className={styles.option}
-          href="https://pricing-page-mobile.web.app/pricing"
-        >
+        <Link to="/pricing" className="navigation_link" id="link_pricing">
           Pricing
-        </a>
+        </Link>
       </div>
       <div className={styles.option}>
         <button className={styles.ownCityBtn}>Own your own city section</button>
@@ -256,9 +257,16 @@ console.log(visited)
           </span>
 
           <div className={styles.loginBtn}>
-            <Link>Login</Link>
+          <a
+          type="button"
+          className="navigation_button"
+          id="button_login"
+          href="https://globuzzer.mn.co/sign_in"
+        >
+          Login
+        </a>
           </div>
-          <Link to="/cities">
+          <Link to="/signup">
             <button className={styles.signUpBtn}>Sign Up</button>
           </Link>
         </div>
