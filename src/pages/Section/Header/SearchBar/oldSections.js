@@ -18,9 +18,15 @@ export const oldSections = {
   'milan': '258697',
   'rome': '195833',
   'salatiga': '588489',
-  'san-Francisco': '312045',
+  'san francisco': '312045',
   'sofia': '435389',
   'toronto': '466728',
   'vilnius': '210260',
   'zagreb': '403651',
-}
+  'berlin': '195836',
+  'kiev': '495256',
+  'los angeles': '1338914',
+};
+
+// signup: https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=
+// 

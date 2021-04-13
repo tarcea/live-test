@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { HashLink } from "react-router-hash-link";
 import styles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { BsSearch } from "react-icons/bs";
 import { RiArrowDropDownFill } from "react-icons/ri";
+import { FiMenu } from "react-icons/fi";
 import { ReactComponent as Logo } from "../../../../assets/Section/Header/Logo.svg";
 import WeatherIcon from "../../../../assets/Section/Header/weather-icon.svg";
 import { GetWindowDimension } from "../../../../utils/GetWindowDimension";
 import NavigationMobile from "./NavigationMobile";
 import axios from "axios";
 import { apiKey, cityID } from "../../../../constants/index";
+import { animated, useSpring } from "react-spring";
+import DestinationIcon from "../../../../assets/Nav/DestinationIcon.svg";
+import ServicesIcon from "../../../../assets/Nav/ServicesIcon.svg";
+import CareerIcon from "../../../../assets/Nav/CareerIcon.svg";
+import PricingIcon from "../../../../assets/Nav/PricingIcon.svg";
+import GLOBUZZER from "../../../../assets/Logo.svg";
+import { oldSections } from "../SearchBar/oldSections";
 
 const NavBar = ({ pathname }) => {
-  const { width } = GetWindowDimension();
+  const { width, height } = GetWindowDimension();
   const [scroll, setScroll] = useState(false);
   const [weather, setWeather] = useState("");
   const [visited, setVisited] = useState(JSON.parse(localStorage.getItem('visited')) || []);
+  const [isOpen, setIsOpen] = useState(false);
  
   const handleScroll = () => {
     if (window.pageYOffset > 60) return setScroll(true);
@@ -51,7 +61,7 @@ const NavBar = ({ pathname }) => {
     recentVisited(visited, pathname, 4);
     localStorage.setItem("visited",JSON.stringify([...new Set(visited)]))
   },[]);
-console.log(visited)
+
   const currentTemp = () => {
     let key = apiKey;
     let id = cityID;
@@ -90,11 +100,30 @@ console.log(visited)
     }
   };
 
+  const animation = useSpring({
+    height: isOpen ? `${height}px` : "0px",
+    opacity: isOpen ? 1 : 0,
+    width: isOpen ? "213px" : "0px",
+    backgroundColor: "#2A293A",
+    position: "absolute",
+    top: 0,
+    right: 0,
+    zIndex: 9999,
+    pointerEvents: isOpen ? "auto" : "none",
+    display: "flex",
+    flexDirection: "column",
+    config: {
+      duration: isOpen ? 100 : 150,
+    },
+  });
+
   const DesktopNav = () => (
     <div className={styles.nav} style={navStyle()}>
-      <a className={styles.logoContainer} href="#">
-        <Logo className={styles.logo} />
-      </a>
+      <Link to="/">
+        <p className={styles.logoContainer}>
+          <Logo className={styles.logo} />
+        </p>
+      </Link>
       <div className={styles.right}>
         <li className={styles.dest}>
           Destinations
@@ -246,7 +275,7 @@ console.log(visited)
         <button className={styles.ownCityBtn}>Own your own city section</button>
       </div>
 
-      <div className={styles.options} className={styles.left}>
+      <div className={styles.options} >
         <div className={styles.optionItems}>
           <img src={WeatherIcon} alt="weather" className={styles.weatherIcon} />
           <span className={styles.weatherText}>
@@ -261,7 +290,11 @@ console.log(visited)
           type="button"
           className="navigation_button"
           id="button_login"
-          href="https://globuzzer.mn.co/sign_in"
+          href={
+            pathname === '/' 
+            ? "https://globuzzer.mn.co/sign_in" 
+            : `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`
+          }
         >
           Login
         </a>
@@ -273,7 +306,89 @@ console.log(visited)
       </div>
     </div>
   );
-  return <>{width > 1100 ? <DesktopNav /> : <NavigationMobile />}</>;
+// -------------------------------
+  const NavMobileMenu = () => (
+    <div style={{ display: "flex" }}>
+      {isOpen && (
+        <div
+          onKeyDown={() => {}}
+          tabIndex={0}
+          role="button"
+          style={{
+            backgroundColor: "transparent",
+            width: "100vw",
+            height: "100vh",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 9999,
+            color: "transparent",
+          }}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          Test
+        </div>
+      )}
+      <animated.div style={animation} className="navigation_mobile_menu">
+        <div className="nav_top">
+          <HashLink className="nav_item" to="/#section_newcity" smooth>
+            <img src={DestinationIcon} alt="nav_icon" className="nav_icon" />
+            Destination
+          </HashLink>
+          <HashLink className="nav_item" to="/#aux_services" smooth>
+            <img src={ServicesIcon} alt="nav_icon" className="nav_icon" />
+            Services
+          </HashLink>
+
+          <HashLink className="nav_item" to="/pricing">
+            <img src={PricingIcon} alt="nav_icon" className="nav_icon" />
+            Pricing
+          </HashLink>
+          <a href="http://skillscanner.globuzzer.com/" className="nav_item">
+            <img src={CareerIcon} alt="nav_icon" className="nav_icon" />
+            Career
+          </a>
+        </div>
+        <div className="nav_bottom">
+          <a
+            href="https://globuzzer.com/travel-blog.php"
+            className="nav_mobile_own"
+          >
+            Create your travel blog
+          </a>
+          <div className="nav_bottom_container">
+            <a
+              type="button"
+              href="https://globuzzer.mn.co/sign_in"
+              className="nav_mob_link"
+            >
+              Login
+            </a>
+            <button type="button" className="nav_mob_link" id="mob_sign">
+              <Link to="/signup" className="nav_mob_link">
+                Sign up
+              </Link>
+            </button>
+          </div>
+        </div>
+      </animated.div>
+    </div>
+  );
+  const NavMobile = () => (
+    <section className="section_navigation">
+      <Link to="/">
+        <img src={GLOBUZZER} alt="logo" />
+      </Link>
+      <FiMenu
+        className="mobile_hamburger_menu"
+        onClick={() => setIsOpen(!isOpen)}
+      />
+      <NavMobileMenu />
+    </section>
+  );
+// ----------------------------
+
+  return <>{width > 1100 ? <DesktopNav /> : <NavMobile />}</>;
 };
 
 export default NavBar;
