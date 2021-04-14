@@ -1,23 +1,21 @@
 import React from "react";
 import "./css/App.css";
-import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import { Switch, Route, useLocation} from "react-router-dom";
 import { Navigation } from "./components/Navigation/Navigation";
 import NavBar from "./pages/Section/Header/NavBar/NavBar";
 import { Destination } from "./pages/Destination";
-import { Home } from "./pages/Home";
+import Home from "./pages/Home";
 import { Services } from "./pages/Services";
 import { Pricing } from "./pages/Pricing";
 import { Career } from "./pages/Career";
 import { AboutUs } from "./pages/AboutUs";
 import OwnCitySection from "./pages/OwnCitySection";
 import { SignUp } from "./pages/SignUp";
-import Helsinki from "./pages/Helsinki";
 import City from "./pages/City/index";
 import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
   const location = useLocation();
-  const history = useHistory();
   const { pathname } = location;
 
   return (

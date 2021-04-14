@@ -19,7 +19,7 @@ import useFetchArray from "../hooks/useFetchArray";
 import { GetWindowDimension } from "../utils/GetWindowDimension";
 import { firestore } from "../utils/firebase.utils";
 
-export const Home = () => {
+const Home = () => {
   const { width } = GetWindowDimension();
   const [query, setQuery] = useState("");
   const [moreJoinCity, setMoreJoinCity] = useState(false);
@@ -206,3 +206,4 @@ useEffect(() => {
     </>
   );
 };
+export default Home;
