@@ -27,6 +27,10 @@ const NavBar = ({ pathname }) => {
   const [visited, setVisited] = useState(JSON.parse(localStorage.getItem('visited')) || []);
   const [isOpen, setIsOpen] = useState(false);
  
+  const loginPath = pathname === '/' 
+    ? "https://globuzzer.mn.co/sign_in" 
+    : `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`;
+
   const handleScroll = () => {
     if (window.pageYOffset > 60) return setScroll(true);
     setScroll(false);
@@ -46,10 +50,11 @@ const NavBar = ({ pathname }) => {
   //     }
   //   }
   // }
+
   const recentVisited = (array, item, length) => {
       // let unique = [...new Set(array)];
       let transform = []
-      if (item !== '/') {
+      if (item !== '/' && Object.keys(oldSections).includes(item.replace('/','').toLowerCase())) {
           transform = array.unshift(item) > length ? array.pop() : null;
       }
       let unique = [...new Set(transform)];
@@ -58,9 +63,9 @@ const NavBar = ({ pathname }) => {
     
 
   useEffect(() => {
-    recentVisited(visited, pathname, 4);
+    recentVisited(visited, pathname, 5);
     localStorage.setItem("visited",JSON.stringify([...new Set(visited)]))
-  },[]);
+  },[pathname]);
 
   const currentTemp = () => {
     let key = apiKey;
@@ -148,33 +153,47 @@ const NavBar = ({ pathname }) => {
             <ul>
               <p>All destinations:</p>
             </ul>
-              {console.log(oldSections.key)}
             <ul>
-              <li>Helsinki</li>
-              <li>Rome</li>
-              <li>Stockholm</li>
-              <li>London</li>
+              {Object.keys(oldSections).slice(0, 4).map((section) => (
+                <Link to={`/${section}`}>
+                  <li>{section}</li>
+                </Link>
+              ))}
             </ul>
-
             <ul>
-              <li>Oslo</li>
-              <li>Amsterdam</li>
-              <li>Copenhagen</li>
-              <li>San Francisco</li>
+              {Object.keys(oldSections).slice(5, 9).map((section) => (
+                <Link to={`/${section}`}>
+                  <li>{section}</li>
+                </Link>
+              ))}
             </ul>
-
             <ul>
-              <li>Norway</li>
-              <li>Tampere</li>
-              <li>Budapest</li>
-              <li>Los Angeles</li>
+              {Object.keys(oldSections).slice(10, 14).map((section) => (
+                <Link to={`/${section}`}>
+                  <li>{section}</li>
+                </Link>
+              ))}
             </ul>
-
             <ul>
-              <li>Jakarta</li>
-              <li>Salatiga</li>
-              <li>Kiev</li>
-              <li>Berlin</li>
+              {Object.keys(oldSections).slice(15, 19).map((section) => (
+                <Link to={`/${section}`}>
+                  <li>{section}</li>
+                </Link>
+              ))}
+            </ul>
+            <ul>
+              {Object.keys(oldSections).slice(20, 24).map((section) => (
+                <Link to={`/${section}`}>
+                  <li>{section}</li>
+                </Link>
+              ))}
+            </ul>
+            <ul>
+              {Object.keys(oldSections).slice(25, 29).map((section) => (
+                <Link to={`/${section}`}>
+                  <li>{section}</li>
+                </Link>
+              ))}
             </ul>
           </nav>
         </li>
@@ -290,11 +309,7 @@ const NavBar = ({ pathname }) => {
           type="button"
           className="navigation_button"
           id="button_login"
-          href={
-            pathname === '/' 
-            ? "https://globuzzer.mn.co/sign_in" 
-            : `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`
-          }
+          href={loginPath}
         >
           Login
         </a>
@@ -360,11 +375,7 @@ const NavBar = ({ pathname }) => {
             <a
               type="button"
               className="nav_mob_link"
-              href={
-                pathname === '/' 
-                ? "https://globuzzer.mn.co/sign_in" 
-                : `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`
-              }
+              href={loginPath}
             >
               Login
             </a>

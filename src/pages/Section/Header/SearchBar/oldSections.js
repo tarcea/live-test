@@ -28,5 +28,10 @@ export const oldSections = {
   'los angeles': '1338914',
 };
 
-// signup: https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=
+// signup: `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[sectionName.toLowerCase()]}`
 // 
+// search on section: `https://globuzzer.mn.co/groups/${oldSections[sectionName.toLowerCase()]}/search?term=${value}`
+//
+// search on globuzzer.com: `https://globuzzer.mn.co/search?term=${value}`
+//
+
