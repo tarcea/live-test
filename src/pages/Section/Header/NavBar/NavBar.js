@@ -78,7 +78,7 @@ const NavBar = ({ pathname }) => {
     if (temperature) {
       axios
         .get(
-          "http://api.openweathermap.org/data/2.5/weather?id=" +
+          "https://api.openweathermap.org/data/2.5/weather?id=" +
             id +
             "&appid=" +
             key +
