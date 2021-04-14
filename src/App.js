@@ -19,13 +19,14 @@ const App = () => {
   const location = useLocation();
   const history = useHistory();
   const { pathname } = location;
-console.log(history.location.pathname, pathname)
 
   return (
     <>
-      {pathname !== "/signup" && pathname !== "/own-city-section" && (
-        // <Navigation />
+      {pathname !== "/" && pathname !== "/signup" && pathname !== "/own-city-section" && (
         <NavBar pathname={pathname} />
+      )}
+      {pathname === "/" && (
+        <Navigation />
       )}
       <ScrollToTop />
       <Switch>

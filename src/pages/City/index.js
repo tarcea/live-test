@@ -37,7 +37,7 @@ const City = ({ name }) => {
         setCurrentCity(newCity.filter((c) => c.name.toLowerCase() === cityName.toLowerCase())[0]);
       });
      return () => unsubscribe();
-  }, []);
+  }, [cityName]);
 
   return (
     currentCity && !features.loading ? (

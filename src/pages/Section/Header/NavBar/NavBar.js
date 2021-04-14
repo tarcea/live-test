@@ -19,6 +19,7 @@ import CareerIcon from "../../../../assets/Nav/CareerIcon.svg";
 import PricingIcon from "../../../../assets/Nav/PricingIcon.svg";
 import GLOBUZZER from "../../../../assets/Logo.svg";
 import { oldSections } from "../SearchBar/oldSections";
+import { firestore } from "../../../../utils/firebase.utils";
 
 const NavBar = ({ pathname }) => {
   const { width, height } = GetWindowDimension();
@@ -26,30 +27,18 @@ const NavBar = ({ pathname }) => {
   const [weather, setWeather] = useState("");
   const [visited, setVisited] = useState(JSON.parse(localStorage.getItem('visited')) || []);
   const [isOpen, setIsOpen] = useState(false);
- 
+  const [currentCity, setCurrentCity] = useState(null);
+
   const loginPath = pathname === '/' 
     ? "https://globuzzer.mn.co/sign_in" 
-    : `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`;
+    : `https://globuzzer.mn.co/sign_in?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '').toLowerCase()]}`;
+
+    const signupPath = `https://globuzzer.mn.co/sign_up?from=https%3A%2F%2Fglobuzzer.mn.co%2FgroupsC5389%3Fautojoin%3D1&space_id=${oldSections[pathname.replace('/', '')]}`;
 
   const handleScroll = () => {
     if (window.pageYOffset > 60) return setScroll(true);
     setScroll(false);
   };
-
-  // const checkCityHandler = () => {
-  //   const currentCity = document.querySelector("#city-name").textContent;
-  //   const subCity = document.querySelectorAll('.cities');
-  //   console.log(currentCity);
-  //   console.log(subCity);
-  //   if (currentCity && subCity) {
-  //     for (let city of subCity) {
-  //       if (city.textContent === currentCity) {
-  //         console.log(city.textContent);
-  //         setActive(true);
-  //       } else setActive(false);
-  //     }
-  //   }
-  // }
 
   const recentVisited = (array, item, length) => {
       // let unique = [...new Set(array)];
@@ -61,9 +50,24 @@ const NavBar = ({ pathname }) => {
       return unique;
     };
     
+  useEffect(() => {
+    const unsubscribe = firestore
+      .collection("section_live")
+      .orderBy("name")
+      .onSnapshot((snapshot) => {
+        const newCity = snapshot.docs.map((doc) => ({
+          // id: doc.id,
+          // ...doc.data(),
+          ...doc.data()
+        }));
+        // setCollection(newCity);
+        setCurrentCity(newCity.filter((c) => c.name.toLowerCase() === pathname.replace('/', '').toLowerCase())[0]);
+      });
+      return () => unsubscribe();
+  }, [pathname]);
 
   useEffect(() => {
-    recentVisited(visited, pathname, 5);
+    recentVisited(visited, pathname, 3);
     localStorage.setItem("visited",JSON.stringify([...new Set(visited)]))
   },[pathname]);
 
@@ -249,40 +253,49 @@ const NavBar = ({ pathname }) => {
             <ul>
               <p>All topics:</p>
             </ul>
-
-            <ul>
-              <li>Decisive facts</li>
-              <li>Documentation</li>
-              <li>Accomodation</li>
-              <li>Transportation</li>
-            </ul>
-
-            <ul>
-              <li>Career guide</li>
-              <li>To-do list</li>
-              <li>Health</li>
-              <li>Internet</li>
-            </ul>
-
-            <ul>
-              <li>Banking</li>
-              <li>Education</li>
-              <li>Shopping</li>
-              <li>Food</li>
-            </ul>
-
-            <ul>
-              <li>Culture</li>
-              <li>Events</li>
-              <li>Attactions</li>
-              <li>Entertainment</li>
-            </ul>
-
-            <ul>
-              <li>Social life</li>
-              <li>Sports</li>
-              <li>Tourism</li>
-            </ul>
+              {currentCity && (
+              <>
+                <ul>
+                  {currentCity.topics.slice(0, 4).map((topic) => (
+                    <Link to="#">
+                      <li>{topic.text}</li>
+                    </Link>
+                  ))}
+                </ul>
+    
+                <ul>
+                  {currentCity.topics.slice(5, 9).map((topic) => (
+                    <Link to="#">
+                      <li>{topic.text}</li>
+                    </Link>
+                  ))}
+                </ul>
+    
+                <ul>
+                  {currentCity.topics.slice(10, 14).map((topic) => (
+                    <Link to="#">
+                      <li>{topic.text}</li>
+                    </Link>
+                  ))}
+                </ul>
+    
+                <ul>
+                  {currentCity.topics.slice(15, 19).map((topic) => (
+                    <Link to="#">
+                      <li>{topic.text}</li>
+                    </Link>
+                  ))}
+                </ul>
+    
+                <ul>
+                  {currentCity.topics.slice(20, 24).map((topic) => (
+                    <Link to="#">
+                      <li>{topic.text}</li>
+                    </Link>
+                  ))}
+                </ul>
+              </>
+              )} 
           </nav>
         </li>
 
@@ -314,13 +327,22 @@ const NavBar = ({ pathname }) => {
           Login
         </a>
           </div>
-          <Link to="/signup">
-            <button className={styles.signUpBtn}>Sign Up</button>
-          </Link>
+          {pathname === '/' ? (
+            <Link to='/signup'>
+              <button className={styles.signUpBtn}>Sign Up</button>
+            </Link>
+          ) : (
+            <a 
+              href={signupPath}
+            >
+              <button className={styles.signUpBtn}>Sign Up</button>
+            </a>
+          )}
         </div>
       </div>
     </div>
   );
+
 // -------------------------------
   const NavMobileMenu = () => (
     <div style={{ display: "flex" }}>
