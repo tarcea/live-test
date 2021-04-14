@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "./css/App.css";
 import { Switch, Route, useLocation} from "react-router-dom";
 import { Navigation } from "./components/Navigation/Navigation";
 import NavBar from "./pages/Section/Header/NavBar/NavBar";
 import { Destination } from "./pages/Destination";
-import Home from "./pages/Home";
+// import { Home } from "./pages/Home";
 import { Services } from "./pages/Services";
 import { Pricing } from "./pages/Pricing";
 import { Career } from "./pages/Career";
@@ -13,6 +13,7 @@ import OwnCitySection from "./pages/OwnCitySection";
 import { SignUp } from "./pages/SignUp";
 import City from "./pages/City/index";
 import ScrollToTop from "./utils/ScrollToTop";
+const Home = lazy(() => import ("./pages/Home"));
 
 const App = () => {
   const location = useLocation();
@@ -29,7 +30,9 @@ const App = () => {
       <ScrollToTop />
       <Switch>
         <Route path="/" exact>
+        <Suspense fallback={<div>Loading.....</div>}>
           <Home />
+        </Suspense>
         </Route>
         <Route path="/destination">
           <Destination />

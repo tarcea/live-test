@@ -97,16 +97,16 @@ const City = ({ name }) => {
     )
     : (
       <div>
-        <section className="helsinki_header">
-          <div className="helsinki_header_url">
+        <section className="city_header">
+          <div className="city_header_url">
             <Link to="/">
               <p>Landing Page</p>
             </Link>
-            <AiFillCaretRight className="helsinki_header_url_icon" />
+            <AiFillCaretRight className="city_header_url_icon" />
             <p>{cityName}</p>
           </div>
           <p id="header_1" >page not found</p>
-          <p id="helsinki_header_2">try another city</p>
+          <p id="city_header_2">try another city</p>
         </section>
         <div className={styles.footer}>
           <OwnSection />
