@@ -202,7 +202,7 @@ const NavBar = ({ pathname }) => {
           </nav>
         </li>
 
-        <li className={styles.service}>
+        {/* <li className={styles.service}>
           Services
           <IconContext.Provider value={{ className: "dropdown" }}>
             <RiArrowDropDownFill />
@@ -236,7 +236,7 @@ const NavBar = ({ pathname }) => {
               <li>Flight</li>
             </ul>
           </nav>
-        </li>
+        </li> */}
 
         <li className={styles.topic}>
           Topics
