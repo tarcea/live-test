@@ -402,9 +402,15 @@ const NavBar = ({ pathname }) => {
               Login
             </a>
             <button type="button" className="nav_mob_link" id="mob_sign">
-              <Link to="/signup" className="nav_mob_link">
-                Sign up
-              </Link>
+              {pathname === '/' ? (
+                <Link to="/signup" className="nav_mob_link">
+                  Sign up
+                </Link>
+              ) : (
+                <a href={signupPath} className="nav_mob_link">
+                  Sign up
+                </a>
+              )}
             </button>
           </div>
         </div>
