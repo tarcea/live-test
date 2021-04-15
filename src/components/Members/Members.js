@@ -1,4 +1,5 @@
 import React from "react";
+import './members.css';
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styles from "./Members.module.css";
@@ -13,7 +14,7 @@ const Members = ({ city }) => {
   const MembersMobile = () => (
     <div>
       <BlogHeader label="Top members to meet" />
-      <div className="member_meet_grid">
+      <div className={"member_meet_grid"}>
         {(topMembers || []).slice(0, 2).map((data) => (
           <>
             <div key={data.id}/>
