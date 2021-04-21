@@ -1,7 +1,9 @@
 .container {
   margin-top: 50px;
 }
-
+.eachSlide {
+  cursor: pointer;
+}
 .eachSlide > div {
   display: flex;
   align-items: center;
