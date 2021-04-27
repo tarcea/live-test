@@ -4,15 +4,19 @@ import { useKeenSlider } from "keen-slider/react";
 import CarouselCard from "./CarouselCard";
 import { GetWindowDimension } from "../../utils/GetWindowDimension";
 
-const KeenSlider = ({ data }) => {
+const KeenSlider = ({ 
+  data, 
+  currentSlide, 
+  setCurrentSlide 
+}) => {
   const { width } = GetWindowDimension();
   const [slides, setSlides] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider(
     { slidesPerView: slides,
       loop: true,
       centered: true,
-      initial: 0,
+      initial: currentSlide,
       slideChanged(s) {
         setCurrentSlide(s.details().relativeSlide);
       },
@@ -34,7 +38,7 @@ const KeenSlider = ({ data }) => {
             <div 
               key={d.id} 
               className="keen-slider__slide"
-              onClick={() => console.log(currentSlide, i)}
+              // onClick={() => console.log(currentSlide, i)}
             >
               <CarouselCard item={d} currentSlide={currentSlide} slideIndex={i}/>
             </div>
