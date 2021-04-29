@@ -13,6 +13,7 @@ import OwnCitySection from "./pages/OwnCitySection";
 import { SignUp } from "./pages/SignUp";
 import City from "./pages/City/index";
 import ScrollToTop from "./utils/ScrollToTop";
+import Spinner from "./components/Spinner/Spinner";
 const Home = lazy(() => import ("./pages/Home"));
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
       <ScrollToTop />
       <Switch>
         <Route path="/" exact>
-        <Suspense fallback={<div>Loading.....</div>}>
+        <Suspense fallback={<div></div>}>
           <Home />
         </Suspense>
         </Route>
