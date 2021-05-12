@@ -5,14 +5,14 @@ import { GetWindowDimension } from "../../utils/GetWindowDimension";
 import SearchBar from "../../pages/Section/Header/SearchBar/SearchBar";
 
 const SHeader = ({ city, cityName }) => {
-const { bannerImg, title, subtitle, placeOne, placeTwo, placeThree } = city;
+const { img, title, subtitle, placeOne, placeTwo, placeThree } = city;
 const { width } = GetWindowDimension();
   return (
     <>
       <section
         className="section_header"
         id="section_header"
-        style={{backgroundImage: `url(${bannerImg})`}}
+        style={{backgroundImage: `url(${img})`}}
       >
         <div
           className="city_header_url"
