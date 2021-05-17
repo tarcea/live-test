@@ -27,7 +27,7 @@ const Vimeo = ({ city }) => {
             <div key={adv.id}>
               <div
                 className={styles.wrapper}
-                style={{background: adv.bgColor}}
+                // style={{background: adv.bgColor}}
                 onClick={()=> window.open(adv.link, "_blank")}
               >
                 <div className={styles.container}>
