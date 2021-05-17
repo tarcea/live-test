@@ -13,7 +13,6 @@ import OwnCitySection from "./pages/OwnCitySection";
 import { SignUp } from "./pages/SignUp";
 import City from "./pages/City/index";
 import ScrollToTop from "./utils/ScrollToTop";
-import Spinner from "./components/Spinner/Spinner";
 const Home = lazy(() => import ("./pages/Home"));
 
 const App = () => {
@@ -56,9 +55,6 @@ const App = () => {
         <Route path="/signup">
           <SignUp />
         </Route>
-        {/* <Route path="/helsinki">
-          <Helsinki />
-        </Route> */}
         <Route path="/:city">
           <City name={pathname}/>
         </Route>
